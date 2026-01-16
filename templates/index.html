@@ -1,0 +1,16 @@
+<!-- template -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>project</title>
+</head>
+<body>
+  <form method="post" action = "/">
+    <input type="number" name="age" placeholder="Enter your age" value = "{{ age }}">
+    <button type="submit">Submit</button>
+  </form>
+  {% if age is not none %}
+    <p>Your age is: {{ age }}</p>
+  {% endif %}
+</body>
+</html>
