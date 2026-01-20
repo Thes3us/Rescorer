@@ -1,6 +1,6 @@
-# Project
+# Rescorer
 
-A basic placeholder Flask app.
+An AI-powered resume scorer
 ## Requirements
 - Python 3.x
 - Git
