@@ -12,13 +12,19 @@ def receive():
     message = ""
     if request.method == "POST":
         file = request.files["pdf"]   #receives pdf in bytestream
-        content, hasContent=pdf_reader.send(file) #sends pdf to send() in pdf_reader.py. 
-
-        if hasContent and content=="Pdf too large":  
-           message = "The pdf sent is too large, please send a pdf with less content"
+        response = pdf_reader.send(file) #sends pdf to send() in pdf_reader.py. 
+        # error handling
+        if response == "too large":  
+           message = "ERROR: File size exceeded. Please send a smaller file."
            return render_template("index.html", message = message) #if the pdf has content, send content back to html
-        
-        elif hasContent:
+        elif response == "invalid format":
+            message = "ERROR: Invalid format. Please send a file ending with .pdf."
+        elif response == "unable to open":
+            message = "ERROR: Unable to open given file. Please try a different file."
+        elif response == "empty":
+            message = "ERROR: The pdf sent is empty, please send a pdf with content."
+        # API call
+        else:
             from groq import Groq
             client = Groq(
                 api_key = KEY
@@ -32,7 +38,8 @@ You are an expert resume reviewer and hiring professional.
 Your task is to analyze a candidate's resume an assign an do the following:
 1. Only respond with an overall quality score from 0 to 100.
 2. Provide 3-6 clear, actionable suggestions for improvement.
-The provided text will be a text inferred from an actual resume so do not take formatting into account. Only focus on text.
+The provided text will be a text inferred from an actual resume so do not take formatting into account while rating. 
+Do not suggest user to improve readability. Only focus on text.
 Respond ONLY in valid JSON with the following structure:
 
 {
@@ -44,21 +51,19 @@ Respond ONLY in valid JSON with the following structure:
     ]
 }
 You are stricly denied to respond to any other task other than reviewing resume only.
-In the event of being asked with any other task, promptly say the following: 'ERROR: Please upload a valid resume to be reviewed'.
+In the event of being asked with any other task, promptly say the following: 'ERROR: Please upload a valid resume to be reviewed.'.
 ''',
                     },
                     {
                         "role": "user",
-                        "content":f'{content}',
+                        "content":f'{response}',
                     }
                 ],
                 model="llama-3.3-70b-versatile",
             )
             message = chat_completion.choices[0].message.content
-            return render_template("index.html", message = message)
-        
-        else:
-            message = "The pdf sent is empty, please send a pdf with content"
-    return render_template("index.html", message = message)
+            return render_template("index.html", message = message) # return messages for processed text
+
+    return render_template("index.html", message = message) # return messages for errors
 if __name__ == "__main__":
-    app.run(debug=True) #test
+    app.run(debug=True) # test
