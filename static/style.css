@@ -18,22 +18,23 @@
 
 body {
     background-color: var(--bg-col);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: var(--txt-col);
     min-height: 100vh;
-    color: #ffffff;
+    
 }
 
-/* Card Container */
-.text .upload {
+.text {
     background: var(--bg-col);
     padding: 2.5rem;
     border-radius: 16px;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    vertical-align: center;
     width: 100%;
     max-width: 450px;
-    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0;
+    
 }
 
 h1 {
@@ -49,16 +50,6 @@ p {
     font-size: 0.95rem;
 }
 
-/* Form Styling */
-.upload-area {
-    border: 2px dashed #e2e8f0;
-    padding: 2rem;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    background: #f1f5f9;
-    cursor: pointer;
-    margin-bottom: 1.5rem;
-}
 
 .upload-area:hover {
     border-color: #3b82f6;
@@ -111,7 +102,7 @@ input[type="submit"]:active {
     align-items: center;
     bottom: 20px;
     left: 20px;
-
+    cursor: pointer;
 }
 
 #themeswitch svg:last-child{
@@ -125,3 +116,37 @@ input[type="submit"]:active {
 .darkmode #themeswitch svg:last-child{
     display: block;
 }
+
+.result {
+    margin: 40px auto;   /* 🔥 THIS centers the box */
+    width: 80%;
+    max-width: 900px;
+    padding: 25px;
+    border: 1px solid var(--txt-col);
+    border-radius: 12px;
+  
+}
+
+.top {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    
+    width: 100%;
+
+    justify-content: center;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+

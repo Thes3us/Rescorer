@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/',methods=["GET","POST"])
 def receive():
     #handle submit button
-    message = "sample"
+    message = ""
     if request.method == "POST":
         file = request.files["pdf"]   #receives pdf in bytestream
         content, hasContent=pdf_reader.send(file) #sends pdf to send() in pdf_reader.py. 
