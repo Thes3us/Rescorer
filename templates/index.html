@@ -19,21 +19,24 @@
         <h1>Let us grade your CV!</h1>
         <p>Upload your CV and leave everything else to us.</p>
     </div>
-      <div class="upload">
+
+    <div class="Upload">
         <form action="/" method="post" enctype="multipart/form-data">
-          <div>
+            <div>
             <label for="input">Upload PDF!!</label>
             <input type="file" name="pdf" id="pdf" accept=".pdf" required>
-          </div>
-          <br>
-          <input type="submit">    
+            </div>
+            <br>
+            <input type="submit">
+            
         </form>
-      </div>
-      <div class="response">
-        {% if message is not none %}
-          {{ message }}
-        {% endif %} 
-      </div>
     </div>
+    </div>
+    </div>
+    {% if message is not none %}
+    <div class="result">
+        <p>{{ message }}</p> 
+    </div> 
+    {% endif %}
 </body>
 </html>
