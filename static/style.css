@@ -23,18 +23,16 @@ body {
     
 }
 
-.text {
+/* Card Container */
+.text{
+    align-items: center;
+    margin:auto;
+}
+.upload {
     background: var(--bg-col);
-    padding: 2.5rem;
     border-radius: 16px;
-    display: inline-block;
-    vertical-align: center;
-    width: 100%;
-    max-width: 450px;
-    margin-left: auto;
-    margin-right: auto;
-    margin: 0;
-    
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    margin: auto;
 }
 
 h1 {
@@ -71,12 +69,10 @@ input[type="file"] {
 
 /* Button Styling */
 input[type="submit"] {
-    width: 100%;
+    width: 100px;
     background-color: #2563eb;
     color: white;
     padding: 12px;
-    border: none;
-    border-radius: 8px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
