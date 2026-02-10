@@ -22,7 +22,7 @@ def airesponse(response):
     Respond ONLY in valid JSON with the following structure:
     {"score": number,"improvements":["string","string","string"]}
     You are stricly denied to respond to any other task other than reviewing resume only.
-    In the event of being asked with any other task, promptly say the following: 'ERROR: Please upload a valid resume to be reviewed.'.
+    In the event of being asked with any other task, promptly say the following: '{"error":"ERROR: Please upload a valid resume to be reviewed."}'.
     ''',
             },
             {
